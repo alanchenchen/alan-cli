@@ -1,0 +1,28 @@
+{
+  "name": "alan-cli",
+  "version": "1.0.0",
+  "description": "A simple CLI for creating your projects",
+  "bin": {
+    "alan": "bin/alan"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/alanchenchen/alan-cli.git"
+  },
+  "keywords": [
+    "alan",
+    "cli"
+  ],
+  "author": "alan",
+  "license": "MIT",
+  "dependencies": {
+    "chalk": "^1.1.3",
+    "cli-table": "^0.3.1",
+    "commander": "^2.9.0",
+    "download-git-repo": "^1.0.0",
+    "handlebars": "^4.0.8",
+    "inquirer": "^3.0.6",
+    "metalsmith": "^2.3.0",
+    "ora": "^1.2.0"
+  }
+}
