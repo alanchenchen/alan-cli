@@ -1,6 +1,6 @@
 
  ## 特别声明
- >  本cli是完全fork自大神jrainlau，只是做了非常简单的署名修改，源地址为：https://github.com/jrainlau/scion。  如有侵权，请联系我删除。
+ >  本cli是完全fork自大神jrainlau，只是做了非常简单的署名修改，源地址为：https://github.com/jrainlau/scion 。  如有侵权，请联系我删除。
 
 # Usage
 Open your terminal and type `alan` or `alan -h` , you'll see the help infomation below:
