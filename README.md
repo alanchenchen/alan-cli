@@ -3,7 +3,7 @@
  >  本cli是完全fork自大神jrainlau，只是做了非常简单的署名修改，源地址为：https://github.com/jrainlau/scion。  如有侵权，请联系我删除。
 
 # Usage
-Open your terminal and type `alan` or `alan -h` , you'll see the help infomation below:
+打开terminal或 cmd ，输入`alan` or `alan -h` ，你将看到如下信息:
 ```
   Usage: alan <command>
 
@@ -21,23 +21,25 @@ Open your terminal and type `alan` or `alan -h` , you'll see the help infomation
     -V, --version  output the version number
 ```
 
-> Note that if you are using `MacOS`, `sudo` was required while using commands `add` and `delete`.
+> 如果你是在使用 `MacOS`, `sudo`必须要加载 `add`和 `delete`命令前.
 
 # Commands
 ### list | l
-It shows you the templates list.
+这个命令会展示当前脚手架的模板列表.
 ```
 $ alan list
 
 ┌────────────────────┬────────────────┬────────┐
 │ Template Name      │ Owner/Name     │ Branch │
 ├────────────────────┼────────────────┼────────┤
-│  simple            │ alan/simple    │ master │
+│  simple            │ simple-template│ master │
+├────────────────────┼────────────────┼────────┤
+│  react             │ react-template │ master │
 ├────────────────────┼────────────────┼────────┤
 ```
-
+目前支持两者模板，一个[simple](https://github.com/alanchenchen/simple-template)，一个[react](https://github.com/alanchenchen/react-template)，详情请看模板仓库
 ### init | i
-After adding new templates, you could use this command to generate your own project by choosing template.
+初始化新项目，初始化过程会有3次问答，Template name是模板名称，`simple`或者`react`，Project name是项目名称，第三个问题是在哪个地方初始化项目，默认是当前目录，建议直接按enter.
 ```
 $ alan init
 
