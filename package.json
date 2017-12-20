@@ -1,6 +1,6 @@
 {
   "name": "alan-cli",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "A simple CLI for creating your projects",
   "bin": {
     "alan": "bin/alan"
