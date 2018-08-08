@@ -1,1 +1,17 @@
-{"simple":{"owner/name":"alanchenchen/simple-template","branch":"master"},"react":{"owner/name":"alanchenchen/react-template","branch":"master"}}
+{
+  "simple": {
+    "short": "building mutiple entries",
+    "owner/name": "alanchenchen/simple-template",
+    "branch": "master"
+  },
+  "react": {
+    "short": "building react SPA",
+    "owner/name": "alanchenchen/react-template",
+    "branch": "master"
+  },
+  "library": {
+    "short": "building npm library",
+    "owner/name": "alanchenchen/library-template",
+    "branch": "master"
+  }
+}
