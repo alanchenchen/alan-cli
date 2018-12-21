@@ -1,5 +1,10 @@
 
 # alan-cli
+
+![](https://img.shields.io/npm/v/alan-cli.svg)
+![](https://img.shields.io/npm/dt/alan-cli.svg)
+![](https://img.shields.io/github/license/alanchenchen/alan-cli.svg)
+
 A simple CLI for creating your projects
 > Author：Alan Chen
 
