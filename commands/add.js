@@ -1,8 +1,10 @@
 const { prompt } = require('inquirer')
 const { writeFile } = require('fs')
-const { listTable } = require(`${__dirname}/../utils`)
+const { listTable } = require('../utils/helper')
+const { print } = require('../utils/helper')
+const { TEMPLATES_JSON_PATH } = require('../config/constant')
 
-let tplList = require(`${__dirname}/../templates`)
+let tplList = require(`../templates.json`)
 
 const question = [
   // 模板名称
@@ -10,7 +12,7 @@ const question = [
     type: 'input',
     name: 'name',
     message: 'Set the custom name of the template:',
-    validate (val) {
+    validate(val) {
       if (tplList[val]) {
         return 'Template is existed!'
       } else if (val === '') {
@@ -31,7 +33,7 @@ const question = [
     type: 'input',
     name: 'place',
     message: 'Owner/name of the template:',
-    validate (val) {
+    validate(val) {
       if (val !== '') {
         return true
       }
@@ -49,13 +51,13 @@ const question = [
 
 module.exports = prompt(question).then(({ name, short, place, branch }) => {
   tplList[name] = {}
-  tplList[name]['short'] = short || ''
+  tplList[name]['description'] = short || ''
   tplList[name]['owner/name'] = place
   tplList[name]['branch'] = branch
 
-  writeFile(`${__dirname}/../templates.json`, JSON.stringify(tplList, null, 2), 'utf-8', (err) => {
+  writeFile(TEMPLATES_JSON_PATH, JSON.stringify(tplList, null, 2), 'utf-8', (err) => {
     if (err) {
-      console.log(err)
+      print.error(err)
     }
     listTable(tplList, 'New template has been added successfully!')
   })

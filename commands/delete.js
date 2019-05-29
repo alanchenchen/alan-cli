@@ -1,32 +1,28 @@
 const { prompt } = require('inquirer')
 const { writeFile } = require('fs')
-const { listTable } = require(`${__dirname}/../utils`)
+const { listTable } = require('../utils/helper')
+const { print } = require('../utils/helper')
+const { TEMPLATES_JSON_PATH } = require('../config/constant')
 
-let tplList = require(`${__dirname}/../templates`)
+let tplList = require('../templates.json')
+// 已添加的模板名称
+const existTplName = Object.keys(tplList)
 
 const question = [
   {
-    type: 'input',
+    type: 'list',
     name: 'name',
     message: 'Which template you want to delete:',
-    validate (val) {
-      if (tplList[val]) {
-        return true
-      } else if (val === '') {
-        return 'Name is required!'
-      } else if (!tplList[val]) {
-        return 'This template doesn\'t exists.'
-      }
-    }
+    choices: existTplName
   }
 ]
 
 module.exports = prompt(question).then(({ name }) => {
   delete tplList[name]
 
-  writeFile(`${__dirname}/../templates.json`, JSON.stringify(tplList), 'utf-8', (err) => {
+  writeFile(TEMPLATES_JSON_PATH, JSON.stringify(tplList, null, 2), 'utf-8', (err) => {
     if (err) {
-      console.log(err)
+      print.error(err)
     }
     listTable(tplList, 'Template has been deleted successfully!')
   })

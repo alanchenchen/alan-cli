@@ -3,16 +3,16 @@
 
 ![](https://img.shields.io/npm/v/alan-cli.svg)
 ![](https://img.shields.io/npm/dt/alan-cli.svg)
-![](https://img.shields.io/github/license/alanchenchen/alan-cli.svg)
+[![LICENSE](https://img.shields.io/badge/license-Anti%20996-blue.svg)](https://github.com/996icu/996.ICU/blob/master/LICENSE)
 
 A simple CLI for creating your projects
 > Author：Alan Chen
 
 > E-mail: 739709491@qq.com
 
-> version: 1.1.1
+> version: 1.2.0
 
-> date: 2018/08/08
+> date: 2019/05/29
 
 <!-- ## 特别声明
 >  本cli是完全fork自大神jrainlau，只是做了非常简单的署名修改，源地址为：https://github.com/jrainlau/scion 。  如有侵权，请联系我删除。 -->
@@ -94,6 +94,9 @@ $ alan add
 │ library       │ building npm library     │ alanchenchen/library-template │ master │
 └───────────────┴──────────────────────────┴───────────────────────────────┴────────┘
 ```
+
+## license
+* Anti 996(996.ICU)
 
 ## Thanks to
 * [scion](https://github.com/jrainlau/scion)
