@@ -8,14 +8,10 @@
 A simple CLI for creating your projects
 > Author：Alan Chen
 
-> E-mail: 739709491@qq.com
-
-> version: 1.2.0
+> version: 2.0.0
 
 > date: 2019/05/29
 
-<!-- ## 特别声明
->  本cli是完全fork自大神jrainlau，只是做了非常简单的署名修改，源地址为：https://github.com/jrainlau/scion 。  如有侵权，请联系我删除。 -->
 ## Feature
 一款轻量的前端CLI工具，支持自定义添加模板，删除模板，和初始化项目。不仅仅局限于webpack模板，初始化项目其实就是将模板对应的github仓库拷贝到本地。目前CLI内置了3款webpack模板，用于解决多种开发场景配置繁琐的问题。
 
