@@ -3,16 +3,14 @@ const ora = require('ora')
 const { prompt } = require('inquirer')
 const defaultHooks = require('../config/defaultHooks')
 
-const { 
-    renameFolder,
-    deleteFolder, 
-    print 
-} = require('./helper')
+const { print } = require('./helper')
 
-const { 
-    TEMPLATE_BACKUP_FOLDER_PATH, 
-    TEMPLATE_RESOURCE_FOLDER_PATH, 
-    TEMPLATE_HOOKS_FILE_PATH 
+const { remove, move, pathExistsSync } = require('fs-extra')
+
+const {
+    TEMPLATE_BACKUP_FOLDER_PATH,
+    TEMPLATE_RESOURCE_FOLDER_PATH,
+    TEMPLATE_HOOKS_FILE_PATH
 } = require('../config/constant')
 
 /**
@@ -50,6 +48,7 @@ class Download {
             spinner.succeed()
 
             const beforeOpts = {
+                fs: require('fs-extra'),
                 print,
                 prompt,
                 configs: {
@@ -58,6 +57,7 @@ class Download {
                 }
             }
             const afterOpts = {
+                fs: require('fs-extra'),
                 print,
                 prompt,
                 configs: {
@@ -65,7 +65,12 @@ class Download {
                     resourcePath: dstPath
                 }
             }
-            const customHooks = require(TEMPLATE_HOOKS_FILE_PATH)
+
+            let customHooks = {}
+            // 如果存在hooks文件，则执行自定义的hooks
+            if(pathExistsSync(TEMPLATE_HOOKS_FILE_PATH)) {
+                customHooks = require(TEMPLATE_HOOKS_FILE_PATH)
+            }
 
             try {
                 // 默认的beforeInit钩子执行
@@ -77,24 +82,24 @@ class Download {
                 }
 
                 // 重命名目录，将缓存目录里的模板挪到目的地址，并删除缓存目录
-                await renameFolder(TEMPLATE_RESOURCE_FOLDER_PATH, dstPath)
-                await deleteFolder(TEMPLATE_BACKUP_FOLDER_PATH)
-                
+                await move(TEMPLATE_RESOURCE_FOLDER_PATH, dstPath, {
+                    overwrite: true
+                })
+                await remove(TEMPLATE_BACKUP_FOLDER_PATH)
+
                 // 默认的afterInit钩子执行
                 await defaultHooks.afterInit(afterOpts)
 
                 print.success('New project has been initialized successfully!')
-                
+
                 // 自定义的afterInit钩子执行
                 if (customHooks.hasOwnProperty('afterInit')) {
                     await customHooks.afterInit(afterOpts)
                 }
                 else {
-                    print.info(
-                        `
-                        npm install or yarn
-                        `
-                    )
+                    print.info(`
+    npm install or yarn
+`)
                 }
             } catch (err) {
                 print.error(err)

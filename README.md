@@ -8,9 +8,9 @@
 A simple CLI for creating your projects
 > Author：Alan Chen
 
-> version: 2.0.0
+> version: 2.0.1
 
-> date: 2019/05/29
+> date: 2019/05/30
 
 ## Feature
 一款轻量的前端CLI工具，支持自定义添加模板，删除模板，和初始化项目。不仅仅局限于webpack模板，初始化项目其实就是将模板对应的github仓库拷贝到本地。目前CLI内置了3款webpack模板，用于解决多种开发场景配置繁琐的问题。
@@ -36,7 +36,7 @@ A simple CLI for creating your projects
     -V, --version  output the version number
 ```
 
-> 如果你是在使用 `MacOS`, `sudo`必须要加载 `add`和 `delete`命令前.
+> 如果你是在使用 `MacOS`, `sudo`可能要加载 `add`和 `delete`命令前.
 
 ## Commands
 ### list | l
@@ -46,7 +46,7 @@ $ alan list
 ┌───────────────┬──────────────────────────┬───────────────────────────────┬────────┐
 │ Template Name │ Description              │ Owner/Name                    │ Branch │
 ├───────────────┼──────────────────────────┼───────────────────────────────┼────────┤
-│ simple        │ building mutiple entries │ alanchenchen/simple-template  │ master │
+│ simple        │ building multiple entries│ alanchenchen/simple-template  │ master │
 ├───────────────┼──────────────────────────┼───────────────────────────────┼────────┤
 │ react         │ building react SPA       │ alanchenchen/react-template   │ master │
 ├───────────────┼──────────────────────────┼───────────────────────────────┼────────┤
@@ -59,13 +59,15 @@ $ alan list
   * [library](https://github.com/alanchenchen/library-template)
 
 ### init | i
-初始化新项目，初始化过程会有3次问答，Template name是模板名称，选择`simple`，`react`或者`library`，Project name是项目名称，第三个问题是在哪个地方初始化项目，默认是当前目录，建议直接按enter.
+初始化新项目，初始化过程会有几次问答，Template name是模板名称，选择`simple`，`react`或者`library`，Project name是项目名称，Project description是项目描述，Project version是项目版本，最后一个问题是在哪个地方初始化项目，默认是当前目录，建议直接按enter.
 ```
 $ alan init
 
-? Template name: simple    building mutiple entries
+? Template name: simple    building multiple entries
 ? Project name: demo
-? Where to init the project: ./
+? Project description: a project based on alan-cli
+? Project version: 0.0.1
+? Where to init the project: (./)
 New project has been initialized successfully!
       cd demo
       npm install or yarn
@@ -89,6 +91,52 @@ $ alan add
 ├───────────────┼──────────────────────────┼───────────────────────────────┼────────┤
 │ library       │ building npm library     │ alanchenchen/library-template │ master │
 └───────────────┴──────────────────────────┴───────────────────────────────┴────────┘
+```
+
+## Template
+项目模板必须要有固定的目录结构，仓库根目录必须要有一个`template`目录，cli会将整个`template`目录下的所有文件下载下来。仓库根目录可选一个`template.hooks.js`文件，`template.hooks.js`是该模板的cli预处理模块。代码示例如下：
+```js
+  const { resolve } = require('path')
+
+  /*
+   * 必须导出一个对象，对象包含两个函数的键值对
+   */
+  module.exports = {
+      // 模板初始前钩子，会在模板下载下来，但是生成目录之前触发
+      async beforeInit() {},
+      // 模板初始后钩子，会在模板下载下来，生成目录之后触发
+      /*
+       * 每个钩子函数均有一个形参，形参是一个对象，如下：
+       *        {
+       *          fs,                // fs-extral包，并不是原生fs模块，使用方法可以参考其文档
+       *          print,             // 一个对象，控制台打印模块，print.info()、print.success()、print.warn()、print.error()
+       *          prompt,            // 用于命令行交互提问的模块，同inquirer的prompt方法
+       *          configs: {         
+       *             cliMessage,     // 一个对象，cli中前面几个提示用户输入的答案，name是项目名、description是项目描述、version是版本号
+       *             resourcePath    // 模板资源目录的绝对路径，这个路径在不同钩子函数不同，beforeInit阶段指向缓存目录，afterInit阶段指向cli进程目录
+       *         }
+       *
+       */
+      async afterInit({
+          configs,
+          fs
+      }) {
+          // 以下是cli的默认钩子，会在每个模板初始化之后在package.json文件里写入用户输入的项目信息
+          try {
+              const {resourcePath, cliMessage} = configs
+              const targetPath = resolve(resourcePath, './package.json')
+              let clone = require(targetPath)
+              clone.name = cliMessage.name
+              clone.description = cliMessage.description
+              clone.version = cliMessage.version
+      
+              await fs.outputFile(targetPath, JSON.stringify(clone, null, 2), 'utf-8')
+          } catch (err) {
+              print.error(err)
+          }
+      }
+  }
+
 ```
 
 ## license

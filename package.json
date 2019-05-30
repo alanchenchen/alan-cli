@@ -1,6 +1,6 @@
 {
   "name": "alan-cli",
-  "version": "2.0.0",
+  "version": "2.0.1",
   "description": "A simple CLI for creating your projects",
   "bin": {
     "alan": "bin/alan"
@@ -14,12 +14,13 @@
     "cli"
   ],
   "author": "alan",
-  "license": "MIT",
+  "license": "996.ICU",
   "dependencies": {
     "chalk": "^2.4.2",
     "cli-table": "^0.3.1",
     "commander": "^2.9.0",
     "download-git-repo": "^2.0.0",
+    "fs-extra": "^8.0.1",
     "inquirer": "^6.3.1",
     "ora": "^3.4.0"
   }
