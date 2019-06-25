@@ -4,6 +4,11 @@
     "owner/name": "alanchenchen/simple-template",
     "branch": "master"
   },
+  "vue": {
+    "description": "building vue project easily",
+    "owner/name": "alanchenchen/vue-template",
+    "branch": "master"
+  },
   "react": {
     "description": "building react SPA",
     "owner/name": "alanchenchen/react-template",

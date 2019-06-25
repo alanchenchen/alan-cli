@@ -8,7 +8,8 @@ module.exports = {
     // 模板初始化后同步修改package.json中的名称、描述和版本号信息
     async afterInit({
         configs,
-        fs
+        fs,
+        print
     }) {
         try {
             const {resourcePath, cliMessage} = configs

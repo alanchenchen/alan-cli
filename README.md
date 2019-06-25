@@ -8,9 +8,9 @@
 A simple CLI for creating your projects
 > Author：Alan Chen
 
-> version: 2.0.1
+> version: 2.0.2
 
-> date: 2019/05/30
+> date: 2019/06/25
 
 ## Feature
 一款轻量的前端CLI工具，支持自定义添加模板，删除模板，和初始化项目。不仅仅局限于webpack模板，初始化项目其实就是将模板对应的github仓库拷贝到本地。目前CLI内置了3款webpack模板，用于解决多种开发场景配置繁琐的问题。
@@ -74,7 +74,7 @@ New project has been initialized successfully!
 ```
 
 ### add|a
-如果你有自定义的模板，也可以自定义添加到本地。甚至你可以直接将github某一仓库模板添加到本地模板列表。模板添加后会自动展示出当前模板列表
+如果你有自定义的模板，你可以直接将github某一仓库模板添加到本地模板列表。模板添加后会自动展示出当前模板列表
 ```
 $ alan add
 
@@ -113,13 +113,14 @@ $ alan add
        *          prompt,            // 用于命令行交互提问的模块，同inquirer的prompt方法
        *          configs: {         
        *             cliMessage,     // 一个对象，cli中前面几个提示用户输入的答案，name是项目名、description是项目描述、version是版本号
-       *             resourcePath    // 模板资源目录的绝对路径，这个路径在不同钩子函数不同，beforeInit阶段指向缓存目录，afterInit阶段指向cli进程目录
+       *             resourcePath    // 模板资源目录的绝对路径，这个路径在不同钩子函数不同，beforeInit阶段指向缓存目录(可以访问到template.hooks.js)，afterInit阶段指向cli进程目录(模板的根目录)
        *         }
        *
        */
       async afterInit({
           configs,
-          fs
+          fs,
+          print
       }) {
           // 以下是cli的默认钩子，会在每个模板初始化之后在package.json文件里写入用户输入的项目信息
           try {
