@@ -43,18 +43,21 @@ A simple CLI for creating your projects
 这个命令会展示当前脚手架的模板列表.
 ```
 $ alan list
-┌───────────────┬──────────────────────────┬───────────────────────────────┬────────┐
-│ Template Name │ Description              │ Owner/Name                    │ Branch │
-├───────────────┼──────────────────────────┼───────────────────────────────┼────────┤
-│ simple        │ building multiple entries│ alanchenchen/simple-template  │ master │
-├───────────────┼──────────────────────────┼───────────────────────────────┼────────┤
-│ react         │ building react SPA       │ alanchenchen/react-template   │ master │
-├───────────────┼──────────────────────────┼───────────────────────────────┼────────┤
-│ library       │ building npm library     │ alanchenchen/library-template │ master │
-└───────────────┴──────────────────────────┴───────────────────────────────┴────────┘
+┌───────────────┬─────────────────────────────┬───────────────────────────────┬────────┐
+│ Template Name │ Description                 │ Owner/Name                    │ Branch │
+├───────────────┼─────────────────────────────┼───────────────────────────────┼────────┤
+│ simple        │ building multiple entries   │ alanchenchen/simple-template  │ master │
+├───────────────┼─────────────────────────────┼───────────────────────────────┼────────┤
+│ vue           │ building vue project easily │ alanchenchen/vue-template     │ master │
+├───────────────┼─────────────────────────────┼───────────────────────────────┼────────┤
+│ react         │ building react SPA          │ alanchenchen/react-template   │ master │
+├───────────────┼─────────────────────────────┼───────────────────────────────┼────────┤
+│ library       │ building npm library        │ alanchenchen/library-template │ master │
+└───────────────┴─────────────────────────────┴───────────────────────────────┴────────┘
 ```
-目前内置了3个模板,详情请看模板仓库 :
+目前内置了4个模板,详情请看模板仓库 :
   * [simple](https://github.com/alanchenchen/simple-template)
+  * [vue](https://github.com/alanchenchen/vue-template)
   * [react](https://github.com/alanchenchen/react-template)
   * [library](https://github.com/alanchenchen/library-template)
 
@@ -82,20 +85,23 @@ $ alan add
 ? Set the short description of the template: building npm library
 ? Owner/name of the template: alanchenchen/library-template
 ? Branch of the template: master
-┌───────────────┬──────────────────────────┬───────────────────────────────┬────────┐
-│ Template Name │ Description              │ Owner/Name                    │ Branch │
-├───────────────┼──────────────────────────┼───────────────────────────────┼────────┤
-│ simple        │ building mutiple entries │ alanchenchen/simple-template  │ master │
-├───────────────┼──────────────────────────┼───────────────────────────────┼────────┤
-│ react         │ building react SPA       │ alanchenchen/react-template   │ master │
-├───────────────┼──────────────────────────┼───────────────────────────────┼────────┤
-│ library       │ building npm library     │ alanchenchen/library-template │ master │
-└───────────────┴──────────────────────────┴───────────────────────────────┴────────┘
+┌───────────────┬─────────────────────────────┬───────────────────────────────┬────────┐
+│ Template Name │ Description                 │ Owner/Name                    │ Branch │
+├───────────────┼─────────────────────────────┼───────────────────────────────┼────────┤
+│ simple        │ building multiple entries   │ alanchenchen/simple-template  │ master │
+├───────────────┼─────────────────────────────┼───────────────────────────────┼────────┤
+│ vue           │ building vue project easily │ alanchenchen/vue-template     │ master │
+├───────────────┼─────────────────────────────┼───────────────────────────────┼────────┤
+│ react         │ building react SPA          │ alanchenchen/react-template   │ master │
+├───────────────┼─────────────────────────────┼───────────────────────────────┼────────┤
+│ library       │ building npm library        │ alanchenchen/library-template │ master │
+└───────────────┴─────────────────────────────┴───────────────────────────────┴────────┘
 ```
 
 ## Template
 项目模板必须要有固定的目录结构，仓库根目录必须要有一个`template`目录，cli会将整个`template`目录下的所有文件下载下来。仓库根目录可选一个`template.hooks.js`文件，`template.hooks.js`是该模板的cli预处理模块。代码示例如下：
 ```js
+  // 模板hooks文件里，只能导入node原生模块，否则会报错找不到依赖包
   const { resolve } = require('path')
 
   /*
