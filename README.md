@@ -8,12 +8,12 @@
 A simple CLI for creating your projects
 > Author：Alan Chen
 
-> version: 2.0.2
+> version: 2.1.0
 
-> date: 2019/06/25
+> date: 2019/09/22
 
 ## Feature
-一款轻量的前端CLI工具，支持自定义添加模板，删除模板，和初始化项目。不仅仅局限于webpack模板，初始化项目其实就是将模板对应的github仓库拷贝到本地。目前CLI内置了3款webpack模板，用于解决多种开发场景配置繁琐的问题。
+一款轻量的前端CLI工具，支持自定义添加模板，删除模板，和初始化项目。不仅仅局限于webpack模板，初始化项目其实就是将模板对应的github仓库拷贝到本地。目前CLI内置了5款模板，用于解决多种开发场景配置繁琐的问题。
 
 ## Usage
 全局安装alan-cli。`npm install -g alan-cli`
@@ -43,19 +43,22 @@ A simple CLI for creating your projects
 这个命令会展示当前脚手架的模板列表.
 ```
 $ alan list
-┌───────────────┬─────────────────────────────┬───────────────────────────────┬────────┐
-│ Template Name │ Description                 │ Owner/Name                    │ Branch │
-├───────────────┼─────────────────────────────┼───────────────────────────────┼────────┤
-│ simple        │ building multiple entries   │ alanchenchen/simple-template  │ master │
-├───────────────┼─────────────────────────────┼───────────────────────────────┼────────┤
-│ vue           │ building vue project easily │ alanchenchen/vue-template     │ master │
-├───────────────┼─────────────────────────────┼───────────────────────────────┼────────┤
-│ react         │ building react SPA          │ alanchenchen/react-template   │ master │
-├───────────────┼─────────────────────────────┼───────────────────────────────┼────────┤
-│ library       │ building npm library        │ alanchenchen/library-template │ master │
-└───────────────┴─────────────────────────────┴───────────────────────────────┴────────┘
+┌───────────────────┬────────────────────────────────────────────────────┬─────────────────────────────────────────┬────────┐
+│ Template Name     │ Description                                        │ Owner/Name                              │ Branch │
+├───────────────────┼────────────────────────────────────────────────────┼─────────────────────────────────────────┼────────┤
+│ express-decorator │ building server application with express-decorator │ alanchenchen/express-decorator-template │ master │
+├───────────────────┼────────────────────────────────────────────────────┼─────────────────────────────────────────┼────────┤
+│ simple            │ building multiple entries                          │ alanchenchen/simple-template            │ master │
+├───────────────────┼────────────────────────────────────────────────────┼─────────────────────────────────────────┼────────┤
+│ vue               │ building vue project easily                        │ alanchenchen/vue-template               │ master │
+├───────────────────┼────────────────────────────────────────────────────┼─────────────────────────────────────────┼────────┤
+│ react             │ building react SPA                                 │ alanchenchen/react-template             │ master │
+├───────────────────┼────────────────────────────────────────────────────┼─────────────────────────────────────────┼────────┤
+│ library           │ building npm library                               │ alanchenchen/library-template           │ master │
+└───────────────────┴────────────────────────────────────────────────────┴─────────────────────────────────────────┴────────┘
 ```
-目前内置了4个模板,详情请看模板仓库 :
+目前内置了5个模板,详情请看模板仓库 :
+  * [express-decorator](https://github.com/alanchenchen/express-decorator-template)
   * [simple](https://github.com/alanchenchen/simple-template)
   * [vue](https://github.com/alanchenchen/vue-template)
   * [react](https://github.com/alanchenchen/react-template)

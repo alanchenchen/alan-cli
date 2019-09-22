@@ -1,4 +1,9 @@
 {
+  "express-decorator": {
+    "description": "building server application with express-decorator",
+    "owner/name": "alanchenchen/express-decorator-template",
+    "branch": "master"
+  },
   "simple": {
     "description": "building multiple entries",
     "owner/name": "alanchenchen/simple-template",
@@ -18,5 +23,5 @@
     "description": "building npm library",
     "owner/name": "alanchenchen/library-template",
     "branch": "master"
-  }
+  } 
 }
